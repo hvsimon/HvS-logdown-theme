@@ -1,0 +1,246 @@
+<!doctype html>
+<html class="no-js">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href='http://cdn.jsdelivr.net/semantic-ui/2.1.6/semantic.min.css' media='all' rel='stylesheet' type='text/css' />
+    <script src='https://cdn.jsdelivr.net/jquery/3.0.0-alpha1/jquery.min.js'></script>
+    <script src='http://cdn.jsdelivr.net/semantic-ui/2.1.6/semantic.min.js'></script>
+    <link rel="stylesheet" href=".\stylesheets\style.css" />
+    <!--
+  <link rel="stylesheet" href=".\stylesheets\normalize.css" />
+-->
+
+    <!-- Fallback fonts from Google Webfonts -->
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700|PT+Serif:400,700,400italic,700italic|Source+Code+Pro:400,700' rel='stylesheet' type='text/css'>
+
+    <style>
+      .ui.grid {
+        padding: 14px;
+      }
+      
+      .logo.segment {
+        min-height: 250px;
+        background-image: url("../images/pic2.jpg") !important;
+        background-size: cover !important;
+      }
+      
+      .logo h1.ui.header {
+        margin-top: 2em;
+        margin-bottom: 0em;
+        font-size: 4em;
+        font-weight: bold;
+        text-shadow: 2px 2px 3px #000;
+      }
+      
+      nav {
+        padding-left: 80px;
+      }
+      
+      .nav.segment {
+        background: none;
+        box-shadow: none;
+        border: none;
+      }
+      
+      .nav.list>a.item {
+        font-weight: bold;
+        color: #fff;
+        text-shadow: 1px 1px 2px #000;
+      }
+      
+      .nav.list>a.item:hover {
+        color: #fff;
+      }
+      
+      .ui.horizontal.nav.list>.item {
+        font-size: 17px;
+      }
+      
+      .aside.segment {
+        background: none;
+      }
+      
+      .ui.black.ribbon.label {
+        border-color: #ff5555 !important;
+      }
+      
+      .head.list {
+        width: 150px;
+      }
+      
+      .ui.card {
+        box-shadow: 0 1px 3px 0 #E5E5E5, 0 0 0 1px #E5E5E5;
+      }
+      
+      .ui.card .meta {
+        color: gray;
+      }
+      
+      .ui.card>.title.content,
+      .title.content a {
+        color: white;
+        background: repeating-linear-gradient(-55deg, #222, #222 25px, #333 25px, #333 50px);
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- header -->
+      <header class="ui inverted vertical center aligned logo segment">
+        <div class="ui text container">
+          <a href="{{blog.absolute_url}}">
+            <h1 class="ui inverted header">Have a Smile =]]</h1>
+          </a>
+        </div>
+        <!-- nav -->
+        <nav class="ui center aligned nav segment">
+          <div class="ui horizontal bulleted nav list">
+            <a class="item">
+				Home
+			  </a>
+            <a class="item">
+				Archives
+			  </a>
+            <a class="item">
+				About Me
+			  </a>
+            <a class="item">
+				TODO List
+			  </a>
+
+          </div>
+        </nav>
+      </header>
+      <!-- main -->
+      <div class="ui grid container">
+        <div class="four wide computer only column">
+          <!-- sidebar -->
+          <aside>
+            <!-- about me -->
+            <div class="ui fluid card">
+              <div class="image">
+                <img src="{{ blog.default_cover_url }}">
+              </div>
+              <div class="content">
+                <a class="header">HvSimon</a>
+                <div class="meta">
+                  I'm a Learner Forever.
+                </div>
+                <div class="description">
+                  <div class="ui list">
+                    <div class="item">
+                      <i class="student icon"></i>
+                      <div class="content">
+                        Library and Information Science
+                      </div>
+                    </div>
+
+                    <div class="item">
+                      <i class="student icon"></i>
+                      <div class="content">
+                        Computer Science
+                      </div>
+                    </div>
+
+                    <div class="item">
+                      <i class="marker icon"></i>
+                      <div class="content">
+                        &nbsp;Taipei, Taiwan <i class="tw flag"></i>
+                      </div>
+                    </div>
+                    <div class="item">
+                      <i class="mail icon"></i>
+                      <div class="content">
+                        <a href="mailto:a309011@gmail.com">&nbsp;a309011@gmail.com</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="extra content">
+                <a>
+                  <i class="user icon"></i> Github
+                </a>
+              </div>
+            </div>
+
+            <!-- catgories -->
+            {% block category_list %}
+            <div class="ui vertical fluid menu">
+              <a class="active teal item" href="{{ blog.archives_url }}">
+				All
+			  </a> {% block categories %}
+              <a class="item" href="{{ category.url }}">
+				{{category.name}}
+				<div class="ui label">{{category.count}}</div>
+			  </a> {% endblock %}
+              <div class="item">
+                <div class="ui transparent icon input">
+                  <input type="text" placeholder="Search category">
+                  <i class="search icon"></i>
+                </div>
+              </div>
+            </div>
+            {% endblock %}
+          </aside>
+        </div>
+
+        <div class=" twelve wide computer sixteen wide article column">
+          <!-- article -->
+          {% block posts %}
+          <div class="ui fluid card">
+            <div class="title content">
+              <!--TODO category.name-->
+              {% block index_page|category_page %}
+              <a class="ui black ribbon label">{{category.name}}</a> {% endblock %}
+              <a href="{{post.absolute_url}}">
+                <span><h1>
+				
+				{% block tags_page|index_page|show_page %}
+                  {{post.title}}
+                {% endblock %}
+				
+				</h1></span>
+              </a>
+              <div class="meta">
+                <span class="date">{{post.published_at.date}}</span>
+              </div>
+            </div>
+            <div class="content">
+              <div class="description">
+                {% block show_page %} {{ post.content }} {% endblock %} {% block index_page|tags_page %} {{ post.excerpt_content }}
+              </div>
+            </div>
+            <div class="extra content">
+              {% block readmore %}
+              <div class="ui animated right floated button" tabindex="0">
+                <a href="{{post.absolute_url}}" class="more-link">
+                  <div class="visible content">Read more</div>
+                  <div class="hidden content">
+                    <i class="chevron right icon"></i>
+                  </div>
+                </a>
+              </div>
+              {% endblock %} {% endblock %}
+            </div>
+          </div>
+          {% endblock %}
+        </div>
+        </article>
+        </section>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <footer class="ui center aligned footer segment">
+      © 2016 Simon Lin
+    </footer>
+    </div>
+  </body>
+
+</html>

@@ -1,0 +1,66 @@
+.ui.grid{
+	padding: 14px;
+}
+
+.logo.segment {
+	min-height: 250px;
+	background-image: url("../images/pic2.jpg") !important;
+	background-size: cover !important;
+}
+
+.logo h1.ui.header {
+    margin-top: 2em;
+    margin-bottom: 0em;
+    font-size: 4em;
+    font-weight: bold;
+	text-shadow:2px 2px 3px #000;
+}
+
+nav {
+	padding-left: 80px;
+}
+
+.nav.segment{
+	background: none;
+	box-shadow: none;
+	border: none;
+}
+
+.nav.list>a.item{
+    font-weight: bold;
+	color: #fff;
+	text-shadow:1px 1px 2px #000;
+}
+
+.nav.list>a.item:hover{
+	color: #fff;
+}
+
+.ui.horizontal.nav.list>.item{
+	font-size: 17px;
+}
+.aside.segment {
+	background: none;
+}
+
+.ui.black.ribbon.label {
+    border-color: #ff5555 !important;
+}
+
+.head.list{
+	width: 150px;
+}
+
+.ui.card{
+	box-shadow: 0 1px 3px 0 #E5E5E5,0 0 0 1px #E5E5E5;
+	
+}
+
+.ui.card .meta{
+	color: gray;
+}
+
+.ui.card>.title.content, .title.content a{
+	color: white ;
+	background: repeating-linear-gradient(-55deg, #222, #222 25px, #333 25px, #333 50px);
+}
