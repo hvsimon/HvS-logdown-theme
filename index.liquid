@@ -8,7 +8,7 @@
     <link href='http://cdn.jsdelivr.net/semantic-ui/2.1.6/semantic.min.css' media='all' rel='stylesheet' type='text/css' />
     <script src='https://cdn.jsdelivr.net/jquery/3.0.0-alpha1/jquery.min.js'></script>
     <script src='http://cdn.jsdelivr.net/semantic-ui/2.1.6/semantic.min.js'></script>
-    <link rel="stylesheet" href=".\stylesheets\style.css" />
+    <link rel="stylesheet" href="https://hvsimon.github.io/HvS-logdown-theme/stylesheets/style.css" />
 
     <!-- Fallback fonts from Google Webfonts -->
     <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700|PT+Serif:400,700,400italic,700italic|Source+Code+Pro:400,700' rel='stylesheet' type='text/css'>
@@ -89,7 +89,7 @@
                 </div>
               </div>
               <div class="extra content">
-                <a herf="{{blog.author_github_profile_link}}">
+                <a href="{{blog.author_github_profile_link}}">
                   <i class="github icon"></i> Github
                 </a>
               </div>
@@ -118,18 +118,14 @@
 
         <div class=" twelve wide computer sixteen wide article column">
           <!-- article -->
-          {% block posts %}
+    {% block posts %}
           <div class="ui fluid card">
             <div class="title content">
-              <!--TODO category.name-->
-              <a class="ui black ribbon label">{{category.name}}</a>
               <a href="{{post.absolute_url}}">
-                <span><h1>
-				
+                <span><h1>			
 				{% block tags_page|index_page|show_page %}
-                  {{post.title}}
+					{{post.title}}
                 {% endblock %}
-				
 				</h1></span>
               </a>
               <div class="meta">
@@ -138,11 +134,15 @@
             </div>
             <div class="content">
               <div class="description">
-                {% block show_page %} {{ post.content }} {% endblock %} {% block index_page|tags_page %} {{ post.excerpt_content }}
+                {% block show_page %} 
+					{{ post.content }} 
+				{% endblock %} 
+				{% block index_page|tags_page %} 
+					{{ post.excerpt_content }}
               </div>
             </div>
             <div class="extra content">
-              {% block readmore %}
+            {% block readmore %}
               <div class="ui animated right floated button" tabindex="0">
                 <a href="{{post.absolute_url}}" class="more-link">
                   <div class="visible content">Read more</div>
@@ -151,21 +151,27 @@
                   </div>
                 </a>
               </div>
-              {% endblock %} {% endblock %}
+				{% endblock %} 
+				{% block tag_list %}
+              <div class="ui hvs-pink labels">
+					{% block tags %}
+                <a class="ui label" href="{{tag.url}}">{{tag.name}}</a>
+					{% endblock %}
+              </div>
+				{% endblock %}
+			{% endblock %}
             </div>
           </div>
-          {% endblock %}
+	{% endblock %}
         </div>
         </article>
         </section>
       </div>
     </div>
-
     <!-- footer -->
     <footer class="ui center aligned footer segment">
       © 2016 Simon Lin
     </footer>
     </div>
   </body>
-
 </html>
