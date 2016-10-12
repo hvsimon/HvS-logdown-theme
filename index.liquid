@@ -9,7 +9,16 @@
     <script src='http://cdn.jsdelivr.net/semantic-ui/2.1.6/semantic.min.js'></script>
     <link rel="stylesheet" href="https://hvsimon.github.io/HvS-logdown-theme/stylesheets/style.css" />
     <link rel="stylesheet" href="http://logdown.com/stylesheets/default_pagination.css" />
-
+	<link rel="stylesheet" href="https://hvsimon.github.io/HvS-logdown-theme/stylesheets/github-markdown.css">
+	<style>
+		.markdown-body {
+			box-sizing: border-box;
+			min-width: 200px;
+			max-width: 980px;
+			margin: 0 auto;
+			padding: 45px;
+		}
+	</style>
     <!-- Fallback fonts from Google Webfonts -->
     <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700|PT+Serif:400,700,400italic,700italic|Source+Code+Pro:400,700' rel='stylesheet' type='text/css'>
   </head>
@@ -68,13 +77,13 @@
                     <div class="item">
                       <i class="marker icon"></i>
                       <div class="content">
-                        &nbsp;Taipei, Taiwan <i class="tw flag"></i>
+                        &nbsp;&nbsp;Taipei, Taiwan <i class="tw flag"></i>
                       </div>
                     </div>
                     <div class="item">
                       <i class="mail icon"></i>
                       <div class="content">
-                        <a href="mailto:a309011@gmail.com">&nbsp;a309011@gmail.com</a>
+                        <a href="mailto:a309011@gmail.com">&nbsp;&nbsp;a309011@gmail.com</a>
                       </div>
                     </div>
                   </div>
@@ -131,7 +140,7 @@
 	
 <!-- post article -->
     {% block posts %}
-          <div class="ui fluid card markdown-body"">
+          <div class="ui fluid card"">
             <div class="title content">
               <a href="{{post.absolute_url}}">
                 <span><h1>			
@@ -145,7 +154,7 @@
               </div>
             </div>
             <div class="content">
-              <div class="description">
+              <div class="description markdown-body">
                 {% block show_page %} 
 					{{ post.content }} 
 				{% endblock %} 
