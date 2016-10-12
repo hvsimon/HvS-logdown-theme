@@ -1,6 +1,5 @@
 <!doctype html>
 <html class="no-js">
-
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,11 +8,11 @@
     <script src='https://cdn.jsdelivr.net/jquery/3.0.0-alpha1/jquery.min.js'></script>
     <script src='http://cdn.jsdelivr.net/semantic-ui/2.1.6/semantic.min.js'></script>
     <link rel="stylesheet" href="https://hvsimon.github.io/HvS-logdown-theme/stylesheets/style.css" />
+    <link rel="stylesheet" href="http://logdown.com/stylesheets/default_pagination.css" />
 
     <!-- Fallback fonts from Google Webfonts -->
     <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700|PT+Serif:400,700,400italic,700italic|Source+Code+Pro:400,700' rel='stylesheet' type='text/css'>
   </head>
-
   <body>
     <div class="container">
       <!-- header -->
@@ -26,19 +25,12 @@
         <!-- nav -->
         <nav class="ui center aligned nav segment">
           <div class="ui horizontal bulleted nav list">
-            <a class="item">
+            <a class="item" href="{{blog.absolute_url}}">
 				Home
 			  </a>
-            <a class="item">
+            <a class="item" href="{{ blog.archives_url }}">
 				Archives
 			  </a>
-            <a class="item">
-				About Me
-			  </a>
-            <a class="item">
-				TODO List
-			  </a>
-
           </div>
         </nav>
       </header>
@@ -89,12 +81,11 @@
                 </div>
               </div>
               <div class="extra content">
-                <a href="{{blog.author_github_profile_link}}">
+                <a href="https://github.com/hvsimon">
                   <i class="github icon"></i> Github
                 </a>
               </div>
             </div>
-
             <!-- catgories -->
             {% block category_list %}
             <div class="ui vertical fluid menu">
@@ -105,21 +96,42 @@
 				{{category.name}}
 				<div class="ui label">{{category.count}}</div>
 			  </a> {% endblock %}
-              <div class="item">
-                <div class="ui transparent icon input">
-                  <input type="text" placeholder="Search category">
-                  <i class="search icon"></i>
-                </div>
-              </div>
             </div>
             {% endblock %}
           </aside>
         </div>
-
         <div class=" twelve wide computer sixteen wide article column">
-          <!-- article -->
+		
+<!-- 施工 -->
+		<div class="ui icon message">
+		  <i class="configure icon"></i>
+		  <div class="content">
+			<div class="header">
+			  到處施工
+			</div>
+			<p>攻城獅正在努力！</p>
+		  </div>
+		</div>
+<!-- post archives -->
+
+{% block archives_page %}
+	{% block archives %}
+		<div class="ui relaxed divided list">
+		{% block posts %}
+			<div class="item">
+				<i class="large square middle aligned icon"></i>
+				<div class="content">
+					<a class="header" href="{{post.absolute_url}}">{{post.title}}</a>
+				</div>
+			</div>
+		  {% endblock %}
+		</div>
+	{% endblock %}
+{% endblock %}
+	
+<!-- post article -->
     {% block posts %}
-          <div class="ui fluid card">
+          <div class="ui fluid card markdown-body"">
             <div class="title content">
               <a href="{{post.absolute_url}}">
                 <span><h1>			
@@ -163,6 +175,46 @@
             </div>
           </div>
 	{% endblock %}
+<!-- pagination -->
+	{% block pagination %}
+		<div class="pagination pagination-centered">
+			<ul>
+			{% block previous_page %}
+				<li class="prev previous_page ">
+					<a href="{{previous_page_url}}">Previous</a>
+				</li>
+			{% endblock %}
+
+			{% block jump_pagination %}
+
+				{% block current_page %}
+				  <li class="active">
+					<a href="#">{{page_number}}</a>
+				  </li>
+				{% endblock %}
+
+				{% block page_gap %}
+				  <li class="disabled">
+					<a href="#"><span class="gap">…</span></a>
+				  </li>
+				{% endblock %}
+
+				{% block jump_page %}
+				  <li>
+					<a href="{{page_url}}">{{page_number}}</a>
+				  </li>
+				{% endblock %}
+
+			{% endblock %}
+
+			{% block next_page %}
+				<li class="next next_page ">
+				  <a href="{{next_page_url}}">Next</a>
+				</li>
+			{% endblock %}
+			</ul>
+		</div>
+		{% endblock %}
         </div>
         </article>
         </section>
