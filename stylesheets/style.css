@@ -67,9 +67,3 @@ nav {
 .ui.hvs-pink.labels .label:hover{
 	background-color: #F25151!important;;
 }
-
-@media only screen  and (max-width:540px) {
-  .markdown-body{
-  padding: 0;
-  }
-}
