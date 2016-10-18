@@ -2,11 +2,11 @@
 
 This is my custom theme for Logdown blog.
 
-#### Screenshot
+## Screenshot
 
 (Shooting)
 
-#### Used
+## Used
 
 + Liquid Templating Engine
 + Semantic UI
