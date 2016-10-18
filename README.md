@@ -4,7 +4,7 @@ This is my custom theme for Logdown blog.
 
 ## Screenshot
 
-(Shooting)
+![](screenshot/screenshot.png)
 
 ## Used
 
